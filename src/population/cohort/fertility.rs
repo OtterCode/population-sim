@@ -10,7 +10,6 @@ pub struct Fertility {
 impl Fertility {
     pub fn new(min_age: usize, max_age: usize) -> Fertility {
         let curve = normalize(Curve::new(-3.0).limits_range(-2.0, 3.0, max_age - min_age));
-        println!("{:?}", curve);
         Fertility { curve, min_age, max_age }
     }
 

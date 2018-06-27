@@ -1,13 +1,13 @@
-mod cohort;
-mod fertility;
+mod population;
 mod skew_normal;
 
 //#[macro_use]
 //extern crate serde_derive;
 //extern crate serde_yaml;
 
+use std::iter::repeat;
 use std::env::current_dir;
-use cohort::Cohort;
+use ::population::Population;
 //use serde_yaml;
 
 fn main() {
@@ -15,12 +15,22 @@ fn main() {
     let mut path = current_dir().unwrap();
     path.push("inpop.yml");
 
-    let fertility = fertility::Fertility::new(15, 50);
+    //let fertility = fertility::Fertility::new(15, 50);
 
-    let gen1 = Cohort { members: 200, birth_year: 5, fertility };
+    //let babbies: f32 = (0..50).map(|x| gen1.births(x, 2.1)).sum();
 
-    let babbies: f32 = (0..50).map(|x| gen1.births(x, 2.1)).sum();
+    let tens = repeat(100000).take(1);
+    let zeroes = repeat(0usize).take(15);
+    let pop_: Vec<(usize, usize)> = zeroes.chain(tens).map(|x| (x, x)).collect();
 
-    println!("{:?}", babbies);
+    let mut pop = Population::new(pop_);
+
+
+    for x in 0..200 {
+        pop = pop.advance_year();
+        println!("{:?}", pop.total_pop());
+    }
+    println!("Males: {:?}", pop.total_male());
+    println!("Females: {:?}", pop.total_female());
 
 }
