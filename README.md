@@ -3,7 +3,7 @@
 > An Efficient, Fast, Large-Scale Population Simulator
 
 PopSim uses deterministic statistical methods to allow you to simulate arbitrarily large or
-small populations. At the moment it simulates a static birth and death rate. In the future it
+small populations. At the moment it simulates static birth and death rate curves. In the future it
 will allow you to add a timeline of events to simulate changes in birth/death rate,
 environmental carrying capacity, immigration, and catastrophic events.
 
