@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+cargo readme > README.md;
+cargo rustdoc --lib -- --document-private-items;
+cargo build;

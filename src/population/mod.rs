@@ -1,8 +1,14 @@
 pub mod cohort;
+pub mod attributes;
 
 use self::cohort::Cohort;
 
-#[derive(Debug)]
+
+/**
+A population consists of a large number of cohorts, within a geographical area. The remainders are
+a way to account for very slow population growth, without resorting to random numbers.
+*/
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Population {
     cohorts: Vec<Cohort>,
     male_remainder: f64,
@@ -23,7 +29,7 @@ impl Population {
 
     pub fn advance_year(mut self) -> Population {
         let babies: Vec<f64> = self.cohorts.iter().map(|cohort| {
-            cohort.births(self.current_year, 2.1)
+            cohort.births(self.current_year, 2.028)
         }).collect();
 
 

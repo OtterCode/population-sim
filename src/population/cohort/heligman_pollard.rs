@@ -1,7 +1,7 @@
 use std::error::Error;
 use std::fmt;
 
-// The Heligman-Pollard method of mortality rate estimation.
+/// The Heligman-Pollard method of mortality rate estimation.
 
 #[derive(Debug)]
 pub struct HPError { problem: String }
@@ -21,17 +21,29 @@ impl Error for HPError {
     }
 }
 
-//Annotated with traditional (bad) variable names.
-#[derive(Debug)]
+/// The parameters of an H.-P. equation.
+///
+/// I've given the variables appropriate names for their intended effect on the function, but I've
+/// also annotated them with the traditional (bad) variable names. Why mathematicians do this, I
+/// don't know.
+#[derive(Serialize, Deserialize, Debug)]
 pub struct HPMortalityModel {
-    infant_mortality: f32, //A
-    first_year_mortality: f32, //B
-    infant_mortality_dropoff: f32, //C
-    accident_severity: f32, //D
-    accident_spread: f32, //E
-    accident_midpoint: f32, //F
-    adult_mortality: f32, //G
-    adult_mortality_increase: f32, //H
+    ///A
+    infant_mortality: f32,
+    ///B
+    first_year_mortality: f32,
+    ///C
+    infant_mortality_dropoff: f32,
+    ///D
+    accident_severity: f32,
+    ///E
+    accident_spread: f32,
+    ///F
+    accident_midpoint: f32,
+    ///G
+    adult_mortality: f32,
+    ///H
+    adult_mortality_increase: f32,
 }
 
 
@@ -106,6 +118,6 @@ impl HPMortalityModel {
         let mortality = combined_formula / (combined_formula + 1.0);
 
         mortality
-        
+
     }
 }

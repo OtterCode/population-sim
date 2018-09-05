@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Members {
     pub males: usize,
     pub females: usize,

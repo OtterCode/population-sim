@@ -1,6 +1,8 @@
 use ::skew_normal::Curve;
 
-#[derive(Debug)]
+/// Fertility is measured with a truncated skew-normal curve, typically starting at age 15, peaking
+/// at age 23-27, and slowly declining towards the cutoff at menopause. 
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Fertility {
     curve: Vec<f32>,
     min_age: usize,
@@ -19,8 +21,8 @@ impl Fertility {
     }
 }
 
-// We are normalizing against the mean, not space.
-// We want to multiply any index by the TFR, and get the instantaneous birth rate.
+/// We are normalizing against the mean, not a vector space.
+/// We want to multiply any index by the TFR, and get the instantaneous birth rate.
 fn normalize(vector: Vec<f32>) -> Vec<f32> {
 
     let sum: f32  = vector.iter().sum::<f32>();
